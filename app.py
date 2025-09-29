@@ -31,21 +31,26 @@ if "model_status" not in st.session_state:
 def is_valid_email(email):
     return re.match(r"[^@]+@[^@]+\.[^@]+", email)
 
-# ---------------- Load Models ----------------
-if not os.path.exists("lstm_stock.keras"):
-    st.warning("⚠️ LSTM model file not found. Please place 'lstm_stock.keras' in the folder.")
-else:
-    lstm_model = tf.keras.models.load_model("lstm_stock.keras", compile=False)
+# --- LSTM Model ---
+lstm_url = "https://drive.google.com/uc?export=download&id=1JvhPw4mPvL7UWrGm1mwet3UBT5INjNXO"
+lstm_path = "lstm_stock.keras"
+if not os.path.exists(lstm_path):
+    gdown.download(lstm_url, lstm_path, quiet=False)
+lstm_model = tf.keras.models.load_model(lstm_path)
 
-if not os.path.exists("mlp_model.pkl"):
-    st.warning("⚠️ MLP model file not found. Please place 'mlp_model.pkl' in the folder.")
-else:
-    mlp_model = joblib.load("mlp_model.pkl")
+# --- MLP Model ---
+mlp_url = "https://drive.google.com/uc?export=download&id=12FtUiL_PKXfo1Z6Nv7adds3NOta_NICr"
+mlp_path = "mlp_model.pkl"
+if not os.path.exists(mlp_path):
+    gdown.download(mlp_url, mlp_path, quiet=False)
+mlp_model = joblib.load(mlp_path)
 
-if not os.path.exists("svm_model.pkl"):
-    st.warning("⚠️ SVM model file not found. Please place 'svm_model.pkl' in the folder.")
-else:
-    svm_model = joblib.load("svm_model.pkl")
+# --- SVM Model ---
+svm_url = "https://drive.google.com/uc?export=download&id=1bOhNKntdNX5xEv5kv33QQKrbdiDSaiI7"
+svm_path = "svm_model.pkl"
+if not os.path.exists(svm_path):
+    gdown.download(svm_url, svm_path, quiet=False)
+svm_model = joblib.load(svm_path)
 
 # ---------------- LOGIN ----------------
 if not st.session_state["logged_in"]:
