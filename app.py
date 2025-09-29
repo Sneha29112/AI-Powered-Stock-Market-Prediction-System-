@@ -44,12 +44,21 @@ if "model_status" not in st.session_state:
 def is_valid_email(email):
     return re.match(r"[^@]+@[^@]+\.[^@]+", email)
 
+
+
+
+
 # --- LSTM Model ---
-lstm_url = "https://drive.google.com/uc?export=download&id=1JvhPw4mPvL7UWrGm1mwet3UBT5INjNXO"
-lstm_path = "lstm_stock.keras"
+lstm_url = "https://drive.google.com/uc?export=download&id=15vtdUpzVW21yvGizNDTfpvp3zfAZzq8T"
+lstm_path = "lstm_stock.h5"
+
+# Download the model if it doesn't exist
 if not os.path.exists(lstm_path):
     gdown.download(lstm_url, lstm_path, quiet=False)
+
+# Load the HDF5 model
 lstm_model = tf.keras.models.load_model(lstm_path)
+
 
 # --- MLP Model ---
 mlp_url = "https://drive.google.com/uc?export=download&id=12FtUiL_PKXfo1Z6Nv7adds3NOta_NICr"
@@ -274,5 +283,6 @@ else:
         else:
             if not enabled_models:
                 st.warning("No models enabled")
+
 
 
