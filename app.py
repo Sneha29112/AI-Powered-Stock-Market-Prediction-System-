@@ -56,8 +56,7 @@ lstm_path = "lstm_stock.h5"
 if not os.path.exists(lstm_path):
     gdown.download(lstm_url, lstm_path, quiet=False)
 
-# Load the HDF5 model
-lstm_model = tf.keras.models.load_model(lstm_path)
+
 
 
 # --- MLP Model ---
@@ -283,6 +282,7 @@ else:
         else:
             if not enabled_models:
                 st.warning("No models enabled")
+
 
 
 
