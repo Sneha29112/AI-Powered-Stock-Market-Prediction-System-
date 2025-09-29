@@ -40,8 +40,11 @@ lstm_path = "lstm_stock.h5"
 if not os.path.exists(lstm_path):
     gdown.download(lstm_url, lstm_path, quiet=False)
 
-# Fixed line: load LSTM model without compiling to avoid metric deserialization error
-lstm_model = tf.keras.models.load_model(lstm_path, compile=False)
+# Load LSTM model safely
+try:
+    lstm_model = tf.keras.models.load_model(lstm_path, compile=False)
+except Exception as e:
+    st.error(f"Failed to load LSTM model: {e}")
 
 # --- MLP Model ---
 mlp_url = "https://drive.google.com/uc?export=download&id=12FtUiL_PKXfo1Z6Nv7adds3NOta_NICr"
@@ -258,3 +261,4 @@ else:
         else:
             if not enabled_models:
                 st.warning("No models enabled")
+
