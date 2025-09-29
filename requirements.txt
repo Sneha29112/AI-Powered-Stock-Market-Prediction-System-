@@ -1,8 +1,8 @@
-streamlit==1.32.0
-pandas==2.1.4
-numpy==1.25.2
-tensorflow-cpu==2.12.0
-scikit-learn==1.3.2
-joblib==1.3.2
-plotly==5.18.0
-gdown==4.7.1
+streamlit==1.32.0  
+pandas==2.1.4  
+numpy==1.25.2  
+tensorflow==2.12.0   # Keep exact version used for training
+scikit-learn==1.3.2  
+joblib==1.3.2  
+plotly==5.18.0  
+gdown==4.7.1  
