@@ -4,6 +4,7 @@ import numpy as np
 import tensorflow as tf
 import joblib
 import os
+import gdown
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from datetime import datetime  
@@ -261,3 +262,4 @@ else:
         else:
             if not enabled_models:
                 st.warning("No models enabled")
+
